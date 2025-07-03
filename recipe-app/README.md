@@ -2,8 +2,6 @@
 
 A demonstration of building a Next.js static site with a Go backend microservice. This project shows how to architect modern web applications with static site generation (SSG) and independent API services.
 
-📖 **See [ARCHITECTURE.md](./ARCHITECTURE.md) for detailed architecture explanation and best practices.**
-
 ## Architecture
 
 - **Frontend**: Next.js static export served by nginx on port 3742
@@ -67,8 +65,7 @@ recipe-app/
 │   └── Dockerfile       # Frontend container configuration
 ├── docker-compose.yml   # Service orchestration
 ├── Makefile            # Build and run commands
-├── README.md           # This file
-└── ARCHITECTURE.md     # Detailed architecture guide
+└──README.md           # This file
 ```
 
 ## Stopping the Application
