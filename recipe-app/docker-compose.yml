@@ -1,0 +1,31 @@
+services:
+  backend:
+    build: ./backend
+    container_name: recipe-backend
+    restart: unless-stopped
+    ports:
+      - "8347:8347"
+    networks:
+      - recipe-network
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:8347/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  frontend:
+    build: ./frontend
+    container_name: recipe-frontend
+    restart: unless-stopped
+    ports:
+      - "3742:3742"
+    depends_on:
+      backend:
+        condition: service_healthy
+    networks:
+      - recipe-network
+
+networks:
+  recipe-network:
+    driver: bridge
