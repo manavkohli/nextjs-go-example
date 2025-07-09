@@ -1,14 +1,14 @@
 # Recipe App - French Omelette
 
-A demonstration of building a Next.js static site with a Go backend microservice. This project shows how to architect modern web applications with static site generation (SSG) and independent API services.
+A demonstration of building a Next.js application with server-side rendering (SSR) and a Go backend microservice. This project shows how to architect modern web applications with SSR for dynamic content and independent API services.
 
 ## Architecture
 
-- **Frontend**: Next.js static export served by nginx on port 3742
+- **Frontend**: Next.js with server-side rendering on port 3742
 - **Backend**: Go HTTP server running on port 8347
 - **Containerization**: Docker and Docker Compose
 
-The frontend is built as static HTML/CSS/JS files at build time and served by nginx. This architecture mimics serving static files from a GCS bucket behind a load balancer.
+The frontend uses Next.js server-side rendering to fetch recipe data from the backend API on each request, providing dynamic content with optimal SEO and performance.
 
 ## Prerequisites
 
@@ -54,11 +54,15 @@ recipe-app/
 │   └── Dockerfile       # Backend container configuration
 ├── frontend/
 │   ├── app/             # Next.js app directory
-│   │   ├── page.tsx     # Main page component
+│   │   ├── page.tsx     # Main page component (SSR)
 │   │   ├── layout.tsx   # Root layout
+│   │   ├── RecipeDisplay.tsx # Recipe display component
+│   │   ├── error.tsx    # Error boundary component
+│   │   ├── loading.tsx  # Loading state component
 │   │   └── globals.css  # Global styles
-│   ├── nginx.conf       # Nginx configuration
+│   ├── public/          # Public assets directory
 │   ├── package.json     # Node dependencies
+│   ├── package-lock.json # Locked dependencies
 │   ├── tsconfig.json    # TypeScript configuration
 │   ├── next.config.js   # Next.js configuration
 │   ├── next-env.d.ts    # Next.js TypeScript declarations
@@ -79,7 +83,7 @@ docker-compose down
 
 This project demonstrates several modern web development best practices:
 
-1. **Static Site Generation**: Pre-render pages at build time for optimal performance
+1. **Server-Side Rendering**: Fetch and render content on each request for dynamic data
 2. **Microservices**: Separate frontend and backend concerns
 3. **Container-Ready**: Each service in its own optimized container
 4. **Production Pattern**: Mimics CDN + API architecture used in production
@@ -87,7 +91,7 @@ This project demonstrates several modern web development best practices:
 6. **Security First**: Non-root containers, security headers, and proper error handling
 
 Perfect for learning:
-- How to build static sites with Next.js
+- How to build SSR applications with Next.js
 - How to create lightweight Go microservices  
 - How to containerize modern web applications
 - How to architect scalable web systems

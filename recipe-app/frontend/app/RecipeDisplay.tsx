@@ -1,5 +1,3 @@
-'use client'
-
 interface Recipe {
   name: string
   description: string
@@ -7,7 +5,11 @@ interface Recipe {
   steps: string[]
 }
 
-export default function RecipeDisplay({ recipe }: { recipe: Recipe }) {
+interface RecipeDisplayProps {
+  recipe: Recipe
+}
+
+export function RecipeDisplay({ recipe }: RecipeDisplayProps) {
   return (
     <div style={styles.container}>
       <h1 style={styles.title}>{recipe.name}</h1>
@@ -30,6 +32,10 @@ export default function RecipeDisplay({ recipe }: { recipe: Recipe }) {
           ))}
         </ol>
       </section>
+
+      <footer style={styles.footer}>
+        <p>This recipe is served using Next.js server-side rendering.</p>
+      </footer>
     </div>
   )
 }
@@ -75,5 +81,13 @@ const styles = {
     marginBottom: '16px',
     lineHeight: '1.6',
     color: '#555',
+  },
+  footer: {
+    marginTop: '60px',
+    paddingTop: '20px',
+    borderTop: '1px solid #eee',
+    textAlign: 'center' as const,
+    color: '#999',
+    fontSize: '14px',
   },
 }
