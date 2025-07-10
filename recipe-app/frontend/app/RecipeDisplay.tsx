@@ -3,6 +3,7 @@ interface Recipe {
   description: string
   ingredients: string[]
   steps: string[]
+  customers_served?: number
 }
 
 interface RecipeDisplayProps {
@@ -32,6 +33,13 @@ export function RecipeDisplay({ recipe }: RecipeDisplayProps) {
           ))}
         </ol>
       </section>
+
+      {recipe.customers_served != null && recipe.customers_served > 0 && (
+        <section style={styles.section}>
+          <h2 style={styles.sectionTitle}>Customers Served</h2>
+          <p style={styles.description}>{recipe.customers_served}</p>
+        </section>
+      )}
 
       <footer style={styles.footer}>
         <p>This recipe is served using Next.js server-side rendering.</p>

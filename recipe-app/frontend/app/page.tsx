@@ -5,6 +5,7 @@ interface Recipe {
   description: string
   ingredients: string[]
   steps: string[]
+  customers_served?: number
 }
 
 async function getRecipe(): Promise<Recipe> {
